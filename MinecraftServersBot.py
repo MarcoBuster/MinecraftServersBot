@@ -94,11 +94,7 @@ def bots(chat, message):
 def server(chat, message, args):
     """Search a Minecraft Server"""
     if len(args) == 0:
-<<<<<<< HEAD
         message.reply("<b>Nope</b>"+\
-=======
-        message.reply("</b>Nope<b>"+\
->>>>>>> origin/master
         "\nYou must write <code>/server IP port</code> for search a server.")
         return
     IP = args[0]
