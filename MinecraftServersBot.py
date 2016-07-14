@@ -77,7 +77,18 @@ def help(chat, message):
             "\nUsage: <code>/server server-ip server-port</code>"+
             "\nIf not <b>specified</b>, the port it's set by <b>default</b> on <code>25565</code>"
             "\nExample: <code>/server mc.mycrazyserver.com 25540</code> (Not working lol)"+
-            "\nMore commands will added soon, stay tuned!")
+            "\nMore commands will added soon, stay tuned!\n"
+            "\nGitHub repostory: http://bit.ly/29FZGA6"+\
+            "\nDeveloper: @MarcoBuster"+\
+            "\nOther bots: /bots")
+
+@bot.command("bots")
+def bots(chat, message):
+    """www.github.com/MarcoBuster"""
+    message.reply("*Other bots written by @MarcoBuster*: "+\
+        "\n🇮🇹 @OrarioTreniBot - Search trains, stations, itineraries and stats. Inline, too!"+\
+        "\n🇮🇹 @ClasseVivaBot - Login in your ClasseViva student account, and see grades, agenda and files!"+\
+        "\n🇮🇹 @FrancoIlTassista - Italian channel with funny post, daily.")
 
 @bot.command("server")
 def server(chat, message, args):
