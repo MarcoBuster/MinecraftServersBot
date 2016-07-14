@@ -2,6 +2,22 @@ import API
 import botogram
 from datetime import datetime
 
+import botogram.objects.base
+class InlineQuery(botogram.objects.base.BaseObject):
+    required = {
+        "id": str,
+        "from": botogram.User,
+        "query": str,
+    }
+    optional = {
+        "location": botogram.Location,
+        "offest": str,
+    }
+    replace_keys = {
+        "from": "sender"
+    }
+botogram.Update.optional["inline_query"] = InlineQuery
+
 bot = botogram.create("TOKEN")
 
 @bot.command("start")
@@ -65,6 +81,22 @@ def search(chat, message, args):
                 "\n<b>Version</b>: "+data['server']['name']+\
                 last_online_string+\
                 "<b>Last updated</b>: "+last_updated, syntax="HTML")
+
+def process_inline(bot, chains, update):
+    user = update.inline_query.sender
+    text = update.inline_query.query
+    if text == None:
+        #Now not working, fix.
+        bot.api.call("answerInlineQuery",
+            {"inline_query_id":update.inline_query.id,
+            "cache_time":10,
+            "results":'[{"type":"article","id":"1","title":"Error"'+\
+                '"description":"Write the IP of the server",'+\
+                '"input_message_content":'+\
+                    '{"message_text":"Error, for using this bot inline, I must write (in any chat):'+\
+                    '\n@MinecraftServersBot server-ip","parse_mode":"Markdown"}}]'})
+
+bot.register_update_processor("inline_query", process_inline)
 
 if __name__ == "__main__":
     bot.run()
