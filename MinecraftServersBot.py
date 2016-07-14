@@ -25,11 +25,6 @@ def help(chat, message):
 
 @bot.command("server")
 def server(chat, message, args):
-    """A duplicate for search command"""
-    search(chat, message, args)
-
-@bot.command("search")
-def search(chat, message, args):
     """Search a Minecraft Server"""
     IP = args[0]
 
