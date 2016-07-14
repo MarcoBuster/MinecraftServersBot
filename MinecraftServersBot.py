@@ -26,6 +26,10 @@ def help(chat, message):
 @bot.command("server")
 def server(chat, message, args):
     """Search a Minecraft Server"""
+    if len(args) == 0:
+        message.reply("</b>Nope<b>"+\
+        "\nYou must write <code>/server IP port</code> for search a server.")
+        return
     IP = args[0]
 
     if len(args) == 1:
